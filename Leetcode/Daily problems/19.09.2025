@@ -1,0 +1,30 @@
+class Spreadsheet:
+
+    def __init__(self, rows: int):
+        self.sheet = {}
+
+    def setCell(self, cell: str, value: int) -> None:
+        self.sheet[cell] = value
+
+    def resetCell(self, cell: str) -> None:
+        self.sheet[cell] = 0
+
+    def getValue(self, formula: str) -> int:
+        a,b = formula.split('+')
+        a = a[1:]
+        if a[0].isalpha():
+            a = self.sheet.get(a, 0)
+        else:
+            a = int(a)
+        if b[0].isalpha():
+            b = self.sheet.get(b, 0)
+        else:
+            b = int(b)
+        return a + b
+
+
+# Your Spreadsheet object will be instantiated and called as such:
+# obj = Spreadsheet(rows)
+# obj.setCell(cell,value)
+# obj.resetCell(cell)
+# param_3 = obj.getValue(formula)

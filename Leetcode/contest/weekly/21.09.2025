@@ -1,0 +1,14 @@
+3688. Bitwise OR of Even Numbers in an Array
+class Solution:
+    def evenNumberBitwiseORs(self, nums: List[int]) -> int:
+        r = 0
+        for x in nums:
+            if x % 2 == 0:
+                r |= x
+        return r
+        
+3689. Maximum Total Subarray Value I
+class Solution:
+    def maxTotalValue(self, nums: List[int], k: int) -> int:
+        ans=max(nums)-min(nums)
+        return ans*k

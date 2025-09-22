@@ -1,1 +1,46 @@
-1.
+Episodes:
+
+for t in range(int(input())):
+    n, k = map(int, input().split())
+    a = n*k 
+    print(a//60,a%60)for t in range(int(input())):
+    n, k = map(int, input().split())
+    a = n*k 
+    print(a//60,a%60)
+
+Drawing Chances:
+
+for t in range(int(input())):
+    n, m = map(int, input().split())
+    s = input()
+    if (n&1) == 1:
+        print('No')
+        continue
+    a = s.count('1')
+    b = s.count('0')
+    if a == n//2 or b == n//2 or (a<n//2 and b<n//2):
+        print('Yes')
+    # elif a<n//2 and b<n//2:
+    #     print('yes')
+    else:
+        print('no')
+
+Minimize Sum:
+
+for t in range(int(input())):
+    n, k = map(int, input().split())
+    l = list(map(int, input().split()))
+    f = [0] * k
+    for j in l:
+        f[j] += 1
+    suff = [0] * (k + 1)
+    for j in range(k - 1, -1, -1):
+        suff[j] = suff[j + 1] + f[j]
+    b = sum(l)
+    ans = 10**34
+    for i in range(k):
+        cnt = suff[k - i]
+        s = b + n * i - k * cnt
+        if s < ans:
+            ans = s
+    print(ans)

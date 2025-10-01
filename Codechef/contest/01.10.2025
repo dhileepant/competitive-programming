@@ -25,3 +25,16 @@ Gladiator Fighting
 for t in range(int(input())):
     n = int(input()) - 2
     print(n, (n*(n+1)) // 2)
+
+Cyclic Shift Minimization
+
+for t in range(int(input())):
+    n = int(input())
+    if n%2:
+        print(*[((2*i)%n)+1 for i in range(n)])
+    else:
+        p=[0]*n
+        for i in range(n//2):
+            p[i]=2*(i+1)
+            p[i+n//2]=2*i+1
+        print(*p)

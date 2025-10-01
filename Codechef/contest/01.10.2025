@@ -1,0 +1,27 @@
+Expensive Buying
+
+for t in range(int(input())):
+    n, k = map(int, input().split())
+    l = list(map(int, input().split()))
+    l.sort()
+    ans = sum(l[n-k:])
+    print(ans)
+
+Prime Sum
+
+for t in range(int(input())):
+    n = int(input())
+    l = list(map(int, input().split()))
+    ans = 0
+    for i in range(n-1):
+        for j in range(i+1,n):
+            a = l[i] + l[j]
+            if a == 2 or a ==3 or a == 5:
+                ans += 1
+    print(ans)
+
+Gladiator Fighting
+
+for t in range(int(input())):
+    n = int(input()) - 2
+    print(n, (n*(n+1)) // 2)

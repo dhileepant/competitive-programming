@@ -1,0 +1,44 @@
+import heapq
+from typing import List
+
+class Solution:
+    class Cell:
+        def __init__(self, height: int, row: int, col: int):
+            self.height = height
+            self.row = row
+            self.col = col
+
+        def __lt__(self, other):
+            return self.height < other.height
+
+    def trapRainWater(self, heightMap: List[List[int]]) -> int:
+        if not heightMap or not heightMap[0]:
+            return 0
+
+        m, n = len(heightMap), len(heightMap[0])
+        visited = [[False] * n for _ in range(m)]
+        heap = []
+
+        for i in range(m):
+            heapq.heappush(heap, self.Cell(heightMap[i][0], i, 0))
+            heapq.heappush(heap, self.Cell(heightMap[i][n-1], i, n-1))
+            visited[i][0] = visited[i][n-1] = True
+
+        for j in range(n):
+            heapq.heappush(heap, self.Cell(heightMap[0][j], 0, j))
+            heapq.heappush(heap, self.Cell(heightMap[m-1][j], m-1, j))
+            visited[0][j] = visited[m-1][j] = True
+
+        total = 0
+        directions = [(0,1),(0,-1),(1,0),(-1,0)]
+
+        while heap:
+            cell = heapq.heappop(heap)
+            for dr, dc in directions:
+                r, c = cell.row + dr, cell.col + dc
+                if 0 <= r < m and 0 <= c < n and not visited[r][c]:
+                    visited[r][c] = True
+                    total += max(0, cell.height - heightMap[r][c])
+                    heapq.heappush(heap, self.Cell(max(heightMap[r][c], cell.height), r, c))
+
+        return total

@@ -1,0 +1,16 @@
+class Solution:
+    def maximumTotalDamage(self, power):
+        c = Counter(power)
+        l = [(-(10**9), 0)]
+        for k in sorted(c.keys()):
+            l.append((k, c[k]))
+        n = len(l)
+        f = [0] * n
+        mx = 0
+        j = 1
+        for i in range(1, n):
+            while j < i and l[j][0] < l[i][0] - 2:
+                mx = max(mx, f[j])
+                j += 1
+            f[i] = mx + l[i][0] * l[i][1]
+        return max(f)

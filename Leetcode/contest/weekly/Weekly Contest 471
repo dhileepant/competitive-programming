@@ -1,0 +1,28 @@
+3712. Sum of Elements With Frequency Divisible by K
+
+class Solution:
+    def sumDivisibleByK(self, nums: List[int], k: int) -> int:
+        freq = {}
+        for i in nums:
+            freq[i] = freq.get(i, 0) + 1
+        ans = 0
+        for i in nums:
+            if freq[i] % k == 0:
+                ans += i
+        return ans
+
+3713. Longest Balanced Substring I
+
+class Solution:
+    def longestBalanced(self, s: str) -> int:
+        n=len(s)
+        ans=0
+        #d={}
+        for i in range(n):
+            d={}
+            for j in range(i,n):
+                c=s[j]
+                d[c]=d.get(c,0)+1
+                if len(set(d.values()))==1:
+                    ans =max(ans,j-i+1)
+        return ans

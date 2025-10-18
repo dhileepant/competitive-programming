@@ -1,0 +1,14 @@
+class Solution:
+    def maxDistinctElements(self, nums: List[int], k: int) -> int:
+        nums.sort()
+
+        c = 0
+        prev = -math.inf
+
+        for i in nums:
+            curr = min(max(i - k, prev + 1), i + k)
+            if curr > prev:
+                c += 1
+                prev = curr
+
+        return c

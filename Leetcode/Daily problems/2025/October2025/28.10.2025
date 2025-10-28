@@ -1,0 +1,12 @@
+class Solution:
+    def countValidSelections(self, nums: List[int]) -> int:
+        ans = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                a = sum(nums[:i])
+                b = sum(nums[i+1:])
+                if a == b:
+                    ans += 2
+                elif a == b-1 or a-1 == b:
+                    ans += 1
+        return ans

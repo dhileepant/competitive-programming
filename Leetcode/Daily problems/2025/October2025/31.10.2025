@@ -1,0 +1,9 @@
+class Solution:
+    def getSneakyNumbers(self, nums: List[int]) -> List[int]:
+        ans = []
+        c = {}
+        for i in nums:
+            c[i] = (2 if i in c else 1)
+            if c[i] == 2:
+                ans.append(i)
+        return ans

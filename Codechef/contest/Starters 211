@@ -1,0 +1,32 @@
+Buying Chairs
+
+for t in range(int(input())):
+    w, p, k = map(int,input().split())
+    if k <= w:
+        print(2*k)
+    else:
+        print(2*w + (k-w))
+
+Wolf Down
+
+for t in range(int(input())):
+    n = int(input())
+    s = input().strip()
+    ans = 0
+    for i in s:
+        if i == '1':
+            break 
+        ans += 1
+    print(ans)
+
+No Doubling
+
+for t in range(int(input())):
+    n = int(input())
+    l = list(map(int,input().split()))
+    l.sort(reverse = True)
+    a = len(list(set(l)))
+    if  a != 1:
+        if len(l) > 1:
+            l[-1],l[1] = l[1],l[-1]
+    print(*l)

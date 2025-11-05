@@ -1,0 +1,74 @@
+Alternate Jumps
+
+for t in range(int(input())):
+    n = int(input())
+    print((n+1)//2)
+
+Sabotage
+
+for t in range(int(input())):
+    n,x,k = map(int,input().split())
+    l = list(map(int,input().split()))
+    x += (k*100)
+    l.sort()
+    ans = 1
+    for i in range(n-k):
+        if x < l[i]:
+            ans += 1
+    print(ans)
+
+GCND
+
+from bisect import bisect_left
+for t in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    m=max(a)
+    # f=[0]*(m+1)
+    '''for i in a:
+        f[i]+=1
+    c=[0]*(m+1)
+    for i in range(1,m+1):
+        # for j in range(m+1):
+        for j in range(i,m+1,i):
+            c[i]+=f[j]
+    for i in range(m,0,-1):
+        # if c[i]<n:
+        if c[i] <= n-2:
+            print(i)
+            break
+    # print(i)'''
+    '''for x in a:
+        f[x]+=1
+    c=[0]*(m+1)
+    for i in range(1,m+1):
+        for j in range(i,m+1,i):
+            c[i]+=f[j]
+    ge=[0]*(m+2)
+    for v in range(m,0,-1):
+        ge[v]=ge[v+1]+f[v]
+    for i in range(m,0,-1):
+        if c[i] <= n-2 and (ge[i]-c[i])>0:
+            print(i)
+            break'''
+    f={}
+    for x in a: f[x]=f.get(x,0)+1
+    vals=sorted(f.keys())
+    suf=[0]*(len(vals)+1)
+    for i in range(len(vals)-1,-1,-1):
+        suf[i]=suf[i+1]+f[vals[i]]
+    for z in range(m,0,-1):
+        cnt=0
+        j=z
+        while j<=m:
+            if j in f:
+                cnt+=f[j]
+                if cnt> n-2:
+                    break
+            j+=z
+        if cnt> n-2:
+            continue
+        idx =bisect_left(vals,z)
+        if suf[idx]-cnt>0:
+            print(z)
+            break

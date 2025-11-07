@@ -1,0 +1,5 @@
+for t in range(int(input())):
+    n=int(input())
+    l=list(map(int,input().split()))
+    x=int(input())
+    print("YES" if min(l)<=x<=max(l) else "NO")

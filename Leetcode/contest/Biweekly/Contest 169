@@ -1,0 +1,81 @@
+3736. Minimum Moves to Equal Array Elements III
+
+class Solution:
+    def minMoves(self, nums: List[int]) -> int:
+        m = max(nums)
+        ans = 0
+        for i in nums:
+            ans += (m-i)
+        return ans
+
+3737. Count Subarrays With Majority Element I
+
+class Solution:
+    def countMajoritySubarrays(self, nums: List[int], target: int) -> int:
+        if target not in nums:
+            return 0
+        n = len(nums)
+        ans = 0
+        for i in range(n):
+            c = 0
+            for j in range(i,n):
+                if nums[j] == target: c += 1
+                l = j-i+1
+                if c > l//2: ans+=1
+        return ans
+
+3738. Longest Non-Decreasing Subarray After Replacing at Most One Element
+
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        n=len(nums)
+        if n==1: 
+            return 1
+        l=[1]*n
+        r=[1]*n
+        for i in range(1,n):
+            if nums[i]>=nums[i-1]: 
+                l[i]=l[i-1]+1
+        for i in range(n-2,-1,-1):
+            if nums[i]<=nums[i+1]: r[i]=r[i+1]+1
+        ans=max(max(l),max(r))
+        for i in range(n):
+            L = l[i-1] if i-1>=0 else 0
+            R = r[i+1] if i+1<n else 0
+            if i-1>=0 and i+1<n and nums[i-1]<=nums[i+1]:
+                ans=max(ans, L+1+R)
+            ans=max(ans, L+1, R+1)
+        return ans
+        '''n = len(nums)
+        l = [1] * n
+        r = [1] * n #ans = 0
+        for i in range(1,n):
+            if nums[i] >= nums[i-1]:
+                l[i] = l[i-1] + 1
+        for i in range(n-2,-1,-1):
+            if nums[i] <= nums[i+1]:
+                r[i] = r[i+1] + 1
+        ans = max(max(l), max(r))
+        for i in range(1, n-1):
+            if nums[i-1] <= nums[i+1]:
+                t = l[i-1] + r[i+1]
+                ans = max(ans, t)
+        return ans'''
+
+3739. Count Subarrays With Majority Element II
+
+class Solution:
+    def countMajoritySubarrays(self, nums: List[int], target: int) -> int:
+        p = 0
+        ans = 0
+        s = [0]
+        for x in nums:
+            #p = p+1 if x == target else p-1
+            if x == target:
+                p += 1
+            else:
+                p -= 1
+            pos = bisect_left(s, p)
+            ans += pos
+            insort(s, p)
+        return ans

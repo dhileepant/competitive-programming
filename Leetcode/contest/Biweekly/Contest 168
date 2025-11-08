@@ -1,0 +1,39 @@
+3722. Lexicographically Smallest String After Reverse
+
+class Solution:
+    def lexSmallest(self, s: str) -> str:
+        n = len(s)
+        ans = s
+        k = 1
+        while k <= n:
+            t1 = s[:k][::-1] + s[k:]
+            if t1 < ans:
+                ans = t1
+            t2 = s[:-k] + s[-k:][::-1]
+            if t2 < ans:
+                ans = t2
+            k += 1
+        return ans
+        '''k = 0
+        l = s[0]
+        j = 0
+        for i in s.strip():
+            if i <= l:
+                l = i
+                k =  j
+            j += 1
+        return s[k:0][::-1] + s[k+1]'''
+
+  3723. Maximize Sum of Squares of Digits
+
+class Solution:
+    def maxSumOfSquares(self, num: int, sum: int) -> str:
+        if sum > 9 * num:
+            return ""
+        d =[]
+        r = sum
+        for i in range(num):
+            t = min(r, 9)
+            d.append(t)
+            r -= t
+        return ''.join(map(str,d))

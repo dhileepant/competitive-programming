@@ -1,0 +1,14 @@
+class Solution:
+    def countOperations(self, num1: int, num2: int) -> int:
+        ans = 0
+        while num1 and num2:
+            #ans += 1
+            if num1 >= num2:
+                t = num1 // num2
+                num1 -= (num2 * t)
+                ans += t
+            else:
+                t = num2 // num1
+                num2 -= (num1 * t)
+                ans += t
+        return ans

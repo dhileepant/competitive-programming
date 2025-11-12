@@ -1,0 +1,100 @@
+Signal
+
+for t in range(int(input())):
+    n = int(input())
+    s = input().strip()
+    ans = 0
+    #ans
+    f = 0
+    for i in s:
+        if f and i == '1':
+            ans += 1
+        if i == '0':
+            f = 1
+    print(ans)
+
+Exit Door
+
+for t in range(int(input())):
+    n=int(input())
+    p=[0]+list(map(int,input().split()))
+    pos=[0]*(n+1)
+    for i in range(1,n+1):pos[p[i]]=i
+    b=[0]*(n+1)
+    # f =1
+    def add(i,v):
+        while i<=n:b[i]+=v;i+=i&-i
+    def sum(i):
+        s=0
+        while i>0:s+=b[i];i-=i&-i
+        return s
+    for i in range(1,n+1):add(i,1)
+    ans=0
+    for v in range(n,0,-1):
+        p0=pos[v]
+        l=sum(p0-1)
+        r=sum(n)-sum(p0)
+        ans+=min(l,r)
+        add(p0,-1)
+    print(ans)
+
+Binary Flip
+
+# cook your dish here
+import math
+for t in range(int(input())):
+    n=int(input());s=input().strip()
+    c0=c1=0
+    for i in range(n-1):
+        t=s[i:i+2]
+        if t=="00":c0+=1
+        elif t=="11":c1+=1
+    # ans = 0
+    print(0 if c1>=c0 else math.ceil((c0-c1)/2))
+
+Distinct Fun
+
+# cook your dish here
+for t in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    s=set()
+    c=0
+    # ans=0
+    # f =1
+    for x in a:
+        if x in s:
+            c+=1
+            s.clear()
+        s.add(x)
+    # if x in s:
+    #         c+=1
+    #         s.clear()
+    print(c)
+
+Interesting Binary (Easy Version)
+
+for t in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    inf=10**9
+    prev=[inf]*3
+    for v in range(3):
+        if v>=a[0]:
+            prev[v] =v-a[0]
+    # f =1
+    for i in range(1,n):
+        dp=[inf]*3
+        for v in range(3):
+            if v<a[i]:
+                continue
+    # # c=0
+    # ans = 0
+    # for i in range(1,n):
+    #     if a[i]==a[i-1]:
+            c=v-a[i]
+            m=min(prev[p] for p in range(3) if p!=v)
+            dp[v]=c+m
+        prev=dp
+    ans = min(prev)
+    print(ans)

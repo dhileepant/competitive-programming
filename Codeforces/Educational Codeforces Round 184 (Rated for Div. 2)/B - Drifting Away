@@ -1,0 +1,55 @@
+for t in range(int(input())):
+    s=list(input().strip())
+    n=len(s)
+    f=0
+    # ans = -
+    for i in range(n-1):
+        if (s[i] in '*>') and (s[i+1] in '*<'):
+            f=1
+            break
+    if f:
+        print(-1)
+        continue
+    dp=[-1]*n
+    for st in range(n):
+        if dp[st]!=-1:
+            continue
+        stc=[(st,0)]
+        while stc:
+            v,p=stc.pop()
+            if p==0:
+                if dp[v]!=-1:
+                    continue
+                dp[v]=-2
+                stc.append((v,1))
+                if s[v]=='<':
+                    u=v-1
+                    if u>=0 and dp[u]==-1:
+                        stc.append((u,0))
+                elif s[v]=='>':
+                    u=v+1
+                    if u<n and dp[u]==-1:
+                        stc.append((u,0))
+                else:
+                    u=v-1
+                    if u>=0 and dp[u]==-1:
+                        stc.append((u,0))
+                    u=v+1
+                    if u<n and dp[u]==-1:
+                        stc.append((u,0))
+            else:
+                best=0
+                if s[v]=='<':
+                    u=v-1
+                    best=max(best,1 if u<0 else dp[u]+1)
+                elif s[v]=='>':
+                    u=v+1
+                    best=max(best,1 if u>=n else dp[u]+1)
+                else:
+                    u=v-1
+                    best=max(best,1 if u<0 else dp[u]+1)
+                    u=v+1
+                    best=max(best,1 if u>=n else dp[u]+1)
+                dp[v]=best
+    ans = max(dp)
+    print(ans)

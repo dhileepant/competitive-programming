@@ -1,0 +1,25 @@
+import sys,bisect
+it=iter(sys.stdin.read().split())
+t=int(next(it))
+o=[]
+for qq in range(t):
+    n=int(next(it));a=int(next(it))
+    v=[int(next(it))for _ in range(n)]
+    s=set()
+    s.add(v[0]);s.add(v[-1])
+    for i in range(1,n):
+        x=(v[i-1]+v[i])//2
+        s.add(x);s.add(x+1)
+    s.add(a);s.add(a+1);s.add(a-1)
+    b0=-1;u=0
+    for b in s:
+        if b==a:k=0
+        elif b>a:
+            m=(a+b)/2
+            k=n-bisect.bisect_right(v,m)
+        else:
+            m=(a+b)/2
+            k=bisect.bisect_left(v,m)
+        if k>b0:b0=k;u=b
+    o.append(str(u))
+print("\n".join(o))

@@ -1,0 +1,6 @@
+for t in range(int(input())):
+    n = int(input())
+    s = input().strip()
+    trg = s[-1]
+    ans = sum(1 for ch in s if ch != trg)
+    print(ans)

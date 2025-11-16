@@ -1,0 +1,11 @@
+import sys
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    # ans = 0
+    a, b, n = map(int, input().split())
+    if b >= a or n <= a // b:
+        print(1)
+    else:
+        print(2)

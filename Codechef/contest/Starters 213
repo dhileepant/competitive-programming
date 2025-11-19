@@ -1,0 +1,172 @@
+EXML Race
+
+for t in range(int(input())):
+    n=int(input())
+    m=0
+    # c = -1
+    ans=1
+    for i in range(1,n+1):
+        d, t= map(int,input().split())
+        # s = 
+        s=d//t
+        if s>m:
+            m=s
+            ans=i
+    print(ans)
+
+No 4 Please
+
+for t in range(int(input())):
+    n = int(input())
+    l = list(map(int,input().split()))
+    o = l.count(1)
+    t = l.count(2)
+    th = l.count(3)
+    # ans = 0
+    # ans += th 
+    ans = max(0 , t-1)
+    if o >= th:
+        ans += th 
+    else:
+        ans += o 
+    print(ans)
+
+Separation
+
+for t in range(int(input())):
+    n, x = map(int,input().split())
+    l = list(map(int,input().split()))
+    mn = 0
+    mx = 0
+    # ans = -1
+    e = 0
+    for i in l:
+        if i == x:
+            e += 1  
+        elif i > x:
+            mx += 1 
+        else:
+            mn += 1 
+    #  ans = True
+    # if mx <= e or mn <= e:
+    if e > 0 or mn == 0 or mx == 0:
+    # if mx and mn:
+        print('YeS')
+    else:
+        print('No')
+
+Chef and String
+
+for t in range(int(input())):
+    n, k = map(int, input().split())
+    s = input()
+    # ans
+    '''if all(c=='I' for c in s):
+        print(n*k-1)
+        continue
+    t=[]
+    for c in s:
+        t.append(c if c!='I' else '#')
+    x=0
+    c=t[0]
+    z=1
+    b=[]
+    for i in range(1,n):
+        if t[i]==c:
+            z+=1
+            x+=1
+        else:
+            b.append((c,z))
+            c=t[i]
+            z=1
+    b.append((c,z))
+    a=x
+    l1,b1=b[0]
+    r1,b2=b[-1]
+    if l1==r1:
+        print(a*k+(k-1)*b1)
+    else:
+        print(a*k)'''
+    p = []
+    c = []
+    for i, ch in enumerate(s):
+        if ch != 'I':
+            p.append(i)
+            c.append(ch)
+    if not p:
+        print(n * k - 1)
+        continue
+    m = len(p)
+    a = p[0]
+    b = n - 1 - p[-1]
+    d = 0
+    for i in range(m - 1):
+        g = p[i + 1] - p[i] - 1
+        if c[i] == c[i + 1]:
+            d += p[i + 1] - p[i]
+        else:
+            d += g
+    q = n - p[-1] + p[0]
+    g = q - 1
+    if c[-1] == c[0]:
+        e = q
+    else:
+        e = g
+    ans = a + b + k * d + (k - 1) * e
+    print(ans)
+    '''a = 0
+    for i in range(1, n):
+        if s[i] == s[i-1] or s[i] == 'I' or s[i-1] == 'I':
+            a += 1
+    c = None
+    for x in s:
+        if x != 'I':
+            c = x
+            break
+    #  ans = 0
+    if c is None:
+        print(a + (k - 1) * n)
+        continue
+    #     if c is None:
+    #     print(a + (k - 1) * n)
+    #     continue
+    # f = True
+    # for x in s:
+    #     if x != 'I' and x != c:
+    #         f = False
+    #         break
+    f = True
+    for x in s:
+        if x != 'I' and x != c:
+            f = False
+            break
+    # ans = a * k
+    if f:
+        print(a + (k - 1) * n)
+    else:
+        print(a * k)'''
+
+Mean Difference (Easy)
+
+for t in range(int(input())):
+    n = int(input())
+    a = list(map(int, input().split()))
+    a.sort()
+    ans = 0
+    # x, y = min(a), max(a)
+    s = a[0]
+    c = 1
+    for i in range(n - 1, 0, -1):
+        s += a[i]
+        c += 1
+        ans = max(ans, abs(s // c - a[0]))
+    # ans  = ans * a[0]
+    s = a[-1]
+    c = 1
+    for i in range(n - 1):
+        s += a[i]
+        c += 1
+        ans = max(ans, abs(s // c - a[-1]))
+    # a.s
+    # ans -= 1
+    print(ans)
